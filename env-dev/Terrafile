@@ -1,0 +1,3 @@
+docdb:
+    source:  "https://github.com/santhosh-patchigolla/tf-module-docdb.git"
+    version: "main" 
