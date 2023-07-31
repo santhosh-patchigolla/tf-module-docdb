@@ -23,12 +23,12 @@ resource "aws_docdb_subnet_group" "docdb_subnet_group" {
 }
 
 
-# Creates Compute Machines needed for DocumentDB and these has to be attached to the cluster
-/* resource "aws_docdb_cluster_instance" "cluster_instances" {
+# Creates Compute instances needed for DocumentDB and these has to be attached to the cluster which we havew creared above
+resource "aws_docdb_cluster_instance" "cluster_instances" {
   count              = 1
   identifier         = "roboshop-${var.ENV}-docdb-instance"
   cluster_identifier = aws_docdb_cluster.docdb.id                      #This argument attaches the nodes created here to the docdb cluster.
   instance_class     = "db.t3.medium"
 
-  depends_on = [aws_docdb_cluster.docdb]
-} */
+  depends_on = [aws_docdb_cluster.docdb]        # This is used as a condition that if the cluster creates then only it will creates the instances.
+}
