@@ -7,9 +7,17 @@ resource "aws_security_group" "allows_docdb" {
     from_port   = 27017
     to_port     = 27017
     protocol    = "tcp"
-    cidr_blocks = [data.terraform_remote_state.vpc.VPC_CIDR, data.terraform_remote_state.vpc.DEFAULT_VPC_CIDR]
+    cidr_blocks = [data.terraform_remote_state.vpc.VPC_CIDR]
   }
-
+  
+  ingress {
+    description = "Docdb from Default VPC"
+    from_port   = 27017
+    to_port     = 27017
+    protocol    = "tcp"
+    cidr_blocks = [data.terraform_remote_state.vpc.DEFAULT_VPC_CIDR]
+  }  
+  
   egress {
     from_port   = 0
     to_port     = 0
