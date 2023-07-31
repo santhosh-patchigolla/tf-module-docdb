@@ -12,15 +12,16 @@ resource "aws_docdb_cluster" "docdb" {
 
 
 
-# Creating the subnet groupID from below
+# creates subnet group 
 resource "aws_docdb_subnet_group" "docdb_subnet_group" {
   name       = "roboshop-docdb-${var.ENV}-subnetgroup"
-  subnet_ids = [data.terraform_remote_state.vpc.outputs.outputs.PRIVATE_SUBNET_IDS]
+  subnet_ids = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS
 
   tags = {
     Name = "roboshop-docdb-${var.ENV}-subnetgroup"
   }
 }
+
 
 # Creates Compute Machines needed for DocumentDB and these has to be attached to the cluster
 /* resource "aws_docdb_cluster_instance" "cluster_instances" {
