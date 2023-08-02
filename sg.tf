@@ -5,16 +5,16 @@ resource "aws_security_group" "allows_docdb" {
 
   ingress {
     description = "Docdb from VPC"
-    from_port   = 27017
-    to_port     = 27017
+    from_port   = var.DOCDB_PORT_NUMBER
+    to_port     = var.DOCDB_PORT_NUMBER
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.vpc.outputs.VPC_CIDR]
   }
   
   ingress {
     description = "Docdb from Default VPC"
-    from_port   = 27017
-    to_port     = 27017
+    from_port   =  var.DOCDB_PORT_NUMBER
+    to_port     =  var.DOCDB_PORT_NUMBER
     protocol    = "tcp"
     cidr_blocks = [data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]
   }  
