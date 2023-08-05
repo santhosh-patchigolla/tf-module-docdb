@@ -30,3 +30,5 @@ resource "aws_docdb_cluster_instance" "cluster_instances" {
   
   depends_on = [aws_docdb_cluster.docdb]        # This is used as a condition that if the cluster creates then only it will creates the instances.
 }
+
+# add the secrets and trying to fetch for user name and password
